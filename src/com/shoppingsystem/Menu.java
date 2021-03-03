@@ -1,26 +1,21 @@
 package com.shoppingsystem;
 
 import java.util.*;
-
 public class Menu {
-    private static Scanner input;
+    public static void main(String[] args) {
+        Menu1 menu = new Menu1();
+        menu.products=new ArrayList<>();
+        Menu1.input = new Scanner(System.in);
+        Menu1.print("Welcome to Shopping System menu : ");
+        Customer customer = menu.takeCustomer();
+        menu.takeList();
 
+    }
+}
+class Menu1 {
     public ArrayList<Product> products;
     private  static  int productCount=0;
-    public static void main(String[] args) {
-        this.products=new ArrayList<Product>();
-        input = new Scanner(System.in);
-        print("Welcome to Shopping System menu : ");
-        Customer customer = takeCustomer();
-        takeList();
-
-    }
-
-
-    static void print(String text) {
-        System.out.println(text);
-    }
-
+    public static Scanner input;
     public static Customer takeCustomer() {
         print("Add a customer");
         print("Tell us your name: ");
@@ -54,17 +49,20 @@ public class Menu {
     public  Product takeItem() {
         print("Add a Product");
         print("Name of Product: ");
-        String name = input.nextLine();
+        String name = input.next();
         print("Price of the product: ( just a number)");
         int price = input.nextInt();
         print("Product Added Successfully \nDetails: \nName: " + name + "\nPrice: " + price);
         Product product = new Product(name, price);
         System.out.println(product.name+product.price);
 //        System.out.println(products);
-        this.products.add(product);
+        products.add(product);
 //        productCount++;
 //        products +=products;
 //        products.add(products.size()+1,product);
         return product;
+    }
+    static void print(String text) {
+        System.out.println(text);
     }
 }
